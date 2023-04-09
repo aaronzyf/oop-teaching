@@ -13,13 +13,13 @@ public class Main {
 
         List<Student> list = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
+            Student wuqiongStudent;
             if(i%2 == 0){
-                Student wuqiongStudent = new Student("吴琼" + i, Gender.WOMAN, i%4+1);
-                list.add(wuqiongStudent);
+                wuqiongStudent = new Student("吴琼" + i, Gender.WOMAN, i % 4 + 1);
             }else{
-                Student wuqiongStudent = new Student("小张同学" + i, Gender.MAN, i%4+1);
-                list.add(wuqiongStudent);
+                wuqiongStudent = new Student("小张同学" + i, Gender.MAN, i % 4 + 1);
             }
+            list.add(wuqiongStudent);
 
         }
 
