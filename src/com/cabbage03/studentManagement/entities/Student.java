@@ -22,7 +22,7 @@ public class Student {
     @TableDataField(name = "姓名", width = 12)
     private String name;
 
-    @TableDataField(name = "年级", width = 8, direction = StringAlignment.MIDDLE)
+    @TableDataField(name = "年级", width = 8, direction = StringAlignment.RIGHT)
     private int grade;
 
     @TableDataField(name = "性别", width = 6)
