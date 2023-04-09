@@ -1,4 +1,4 @@
-package  com.cabbage03.studentManagement;
+package com.cabbage03.studentManagement;
 
 import com.cabbage03.studentManagement.entities.Student;
 import com.cabbage03.studentManagement.enums.Gender;
@@ -13,7 +13,7 @@ public class Main {
 
         List<Student> list = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
-            Student wuqiongStudent = new Student("吴琼"+i, Gender.WOMAN,1);
+            Student wuqiongStudent = new Student("吴琼" + i, Gender.WOMAN, 1);
             list.add(wuqiongStudent);
         }
 

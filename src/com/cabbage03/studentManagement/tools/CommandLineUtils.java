@@ -33,16 +33,21 @@ public class CommandLineUtils {
         return deleteConfirm("确定要删除吗");
     }
 
+    /**
+     * 只显示实体类中 , 被 TableDataField 装饰的类.
+     * @param list
+     * @param cls
+     */
     public static void tableData(List<?> list,Class<?> cls){
         Field[] fields = cls.getDeclaredFields();
-        List<Field> fieldsIsShowFlags = new ArrayList<>();
+        List<Field> fieldsShowInTable = new ArrayList<>();
         System.out.print( "#" + "\t");
 
         for (Field field:fields) {
             TableDataField tableDataField = field.getAnnotation(TableDataField.class);
             if(tableDataField != null){
                 System.out.print( tableDataField.value() + "\t\t\t");
-                fieldsIsShowFlags.add(field);
+                fieldsShowInTable.add(field);
             }
         }
 
@@ -56,7 +61,7 @@ public class CommandLineUtils {
         AtomicInteger index = new AtomicInteger();
         list.forEach((Object obj)->{
             System.out.print(index.incrementAndGet()+ "\t");
-            fieldsIsShowFlags.forEach((Field field)->{
+            fieldsShowInTable.forEach((Field field)->{
                 //判断该属性有没有get方法 , 如果有 则invoke 对应的get方法
                 try {
                     System.out.printf(cls.getMethod("get"+StringUtils.capitalize(field.getName())).invoke(obj)+"\t\t");
