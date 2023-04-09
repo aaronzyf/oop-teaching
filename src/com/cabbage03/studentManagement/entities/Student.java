@@ -1,6 +1,7 @@
 package  com.cabbage03.studentManagement.entities;
 
 
+import com.cabbage03.studentManagement.annotations.TableColumnWidth;
 import com.cabbage03.studentManagement.annotations.TableDataField;
 import com.cabbage03.studentManagement.enums.Gender;
 
@@ -20,12 +21,15 @@ public class Student {
 
 
     @TableDataField("姓名")
+    @TableColumnWidth(10)
     private String name;
 
+    @TableColumnWidth(8)
     @TableDataField("年级")
     private int grade ;
 
     @TableDataField("性别")
+    @TableColumnWidth(8)
     private Gender gender ; // 0 女  , 1 男
 
 

@@ -1,5 +1,6 @@
 package  com.cabbage03.studentManagement.tools;
 
+import com.cabbage03.studentManagement.annotations.TableColumnWidth;
 import com.cabbage03.studentManagement.annotations.TableDataField;
 
 import java.lang.reflect.Field;
@@ -45,8 +46,9 @@ public class CommandLineUtils {
 
         for (Field field:fields) {
             TableDataField tableDataField = field.getAnnotation(TableDataField.class);
+            TableColumnWidth tableColumnWidth = field.getAnnotation(TableColumnWidth.class);
             if(tableDataField != null){
-                System.out.print( tableDataField.value() + "\t\t\t");
+                System.out.print( StringUtils.padString(tableDataField.value(),tableColumnWidth == null ? 20 : tableColumnWidth.value() , StringUtils.StringAlignment.RIGHT) + "\t\t");
                 fieldsShowInTable.add(field);
             }
         }
@@ -64,9 +66,12 @@ public class CommandLineUtils {
             fieldsShowInTable.forEach((Field field)->{
                 //判断该属性有没有get方法 , 如果有 则invoke 对应的get方法
                 try {
-                    System.out.printf(cls.getMethod("get"+StringUtils.capitalize(field.getName())).invoke(obj)+"\t\t");
+                    TableColumnWidth tableColumnWidth = field.getAnnotation(TableColumnWidth.class);
+                    System.out.printf(
+                            StringUtils.padString(cls.getMethod("get"+StringUtils.capitalize(field.getName())).invoke(obj).toString(),tableColumnWidth == null ? 20 : tableColumnWidth.value(), StringUtils.StringAlignment.RIGHT)
+                                    +"\t\t");
                 } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-                    System.out.print("no data"+"\t\t\t");
+                    System.out.print("no data"+"\t\t");
                 }
             });
             System.out.println();
