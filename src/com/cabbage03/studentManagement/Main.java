@@ -14,9 +14,9 @@ public class Main {
         List<Student> list = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
             Student student;
-            if(i%2 == 0){
+            if (i % 2 == 0) {
                 student = new Student("吴琼" + i, Gender.WOMAN, i % 4 + 1);
-            }else{
+            } else {
                 student = new Student("小张同学" + i, Gender.MAN, i % 4 + 1);
             }
             list.add(student);

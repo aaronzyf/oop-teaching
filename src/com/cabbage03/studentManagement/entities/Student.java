@@ -1,4 +1,4 @@
-package  com.cabbage03.studentManagement.entities;
+package com.cabbage03.studentManagement.entities;
 
 
 import com.cabbage03.studentManagement.annotations.TableColumnWidth;
@@ -7,16 +7,15 @@ import com.cabbage03.studentManagement.enums.Gender;
 
 public class Student {
 
-    public Student(String name , Gender gender , int grade){
+    public Student(String name, Gender gender, int grade) {
         this.name = name;
-        this.grade =  grade;
+        this.grade = grade;
         this.gender = gender;
     }
 
 
-
-    public void describe(){
-        System.out.println("my name is "+ name);
+    public void describe() {
+        System.out.println("my name is " + name);
     }
 
 
@@ -26,16 +25,14 @@ public class Student {
 
     @TableColumnWidth(8)
     @TableDataField("年级")
-    private int grade ;
+    private int grade;
 
     @TableDataField("性别")
     @TableColumnWidth(8)
-    private Gender gender ; // 0 女  , 1 男
+    private Gender gender; // 0 女  , 1 男
 
 
-
-    static  boolean isHuman = true;
-
+    static boolean isHuman = true;
 
 
     public String getName() {
