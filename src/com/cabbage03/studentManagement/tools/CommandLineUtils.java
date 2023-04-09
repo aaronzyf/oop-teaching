@@ -1,6 +1,7 @@
 package com.cabbage03.studentManagement.tools;
 
 import com.cabbage03.studentManagement.annotations.TableDataField;
+import com.cabbage03.studentManagement.enums.AnsiColor;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -12,9 +13,23 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CommandLineUtils {
 
 
-    public static boolean deleteConfirm(String deleteTip) {
 
+    public static void setPrintColor(AnsiColor color){
+        System.out.print(color.getCode());
+    }
+    public static void resetColor(){
+        System.out.print(AnsiColor.RESET.getCode());
+    }
+
+
+    public static void clear(){
+
+    }
+
+    public static boolean deleteConfirm(String deleteTip) {
+        setPrintColor(AnsiColor.RED);
         System.out.println(deleteTip + " (y/n)");
+        resetColor();
         Scanner scanner = new Scanner(System.in);
 
         //获取用户的输入 , 并且将用户的输入转成小写的形式.
@@ -25,6 +40,12 @@ public class CommandLineUtils {
         } else if (input.equals("n")) {
             return false;
         } else {
+            clear();
+            setPrintColor(AnsiColor.RED);
+            System.out.println("输入不正确 , 请输入y确认删除 ,或输入n取消删除");
+            resetColor();
+            deleteConfirm(deleteTip);
+
             return false;
         }
     }
@@ -44,6 +65,8 @@ public class CommandLineUtils {
 
         Field[] fields = cls.getDeclaredFields();
         List<Field> fieldsShowInTable = new ArrayList<>();
+
+        setPrintColor(AnsiColor.BRIGHT_MAGENTA);
         System.out.print("#" + "\t");
 
         for (Field field : fields) {
@@ -53,6 +76,7 @@ public class CommandLineUtils {
                 fieldsShowInTable.add(field);
             }
         }
+        resetColor();
 
 
         System.out.println();
@@ -63,6 +87,7 @@ public class CommandLineUtils {
 
         AtomicInteger index = new AtomicInteger();
         list.forEach((Object obj) -> {
+            setPrintColor(index.get()%2 ==0 ? AnsiColor.GREEN:AnsiColor.BRIGHT_GREEN );
             System.out.print(index.incrementAndGet() + "\t");
             fieldsShowInTable.forEach((Field field) -> {
                 //判断该属性有没有get方法 , 如果有 则invoke 对应的get方法
@@ -77,6 +102,7 @@ public class CommandLineUtils {
                     System.out.print("no data" + "\t");
                 }
             });
+            resetColor();
             System.out.println();
         });
     }
