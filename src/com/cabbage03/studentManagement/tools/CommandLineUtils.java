@@ -52,7 +52,7 @@ public class CommandLineUtils {
             TableDataField tableDataField = field.getAnnotation(TableDataField.class);
             TableColumnWidth tableColumnWidth = field.getAnnotation(TableColumnWidth.class);
             if (tableDataField != null) {
-                System.out.print(StringUtils.padString(tableDataField.value(), tableColumnWidth == null ? DEFAULT_COLUMN_WIDTH : tableColumnWidth.value(), StringUtils.StringAlignment.RIGHT) + "\t\t");
+                System.out.print(StringUtils.padString(tableDataField.value(), tableColumnWidth == null ? DEFAULT_COLUMN_WIDTH : tableColumnWidth.value()) + "\t\t");
                 fieldsShowInTable.add(field);
             }
         }
@@ -74,8 +74,7 @@ public class CommandLineUtils {
                     System.out.printf(
                             StringUtils.padString(
                                     cls.getMethod("get" + StringUtils.capitalize(field.getName())).invoke(obj).toString(),
-                                    tableColumnWidth == null ? DEFAULT_COLUMN_WIDTH : tableColumnWidth.value(),
-                                    StringUtils.StringAlignment.RIGHT)
+                                    tableColumnWidth == null ? DEFAULT_COLUMN_WIDTH : tableColumnWidth.value())
                                     + "\t\t");
                 } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
                     System.out.print("no data" + "\t\t");

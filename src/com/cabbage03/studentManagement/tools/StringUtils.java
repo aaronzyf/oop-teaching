@@ -12,6 +12,9 @@ public class StringUtils {
     }
 
 
+    public static String padString(String str, int length) {
+        return padString(str,length,StringAlignment.RIGHT);
+    }
     public static String padString(String str, int length, StringAlignment direction) {
         int diff = length - str.length();
         if (diff <= 0) {
