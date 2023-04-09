@@ -1,9 +1,9 @@
 package com.cabbage03.studentManagement.entities;
 
 
-import com.cabbage03.studentManagement.annotations.TableColumnWidth;
 import com.cabbage03.studentManagement.annotations.TableDataField;
 import com.cabbage03.studentManagement.enums.Gender;
+import com.cabbage03.studentManagement.enums.StringAlignment;
 
 public class Student {
 
@@ -19,16 +19,13 @@ public class Student {
     }
 
 
-    @TableDataField("姓名")
-    @TableColumnWidth(10)
+    @TableDataField(name = "姓名", width = 12)
     private String name;
 
-    @TableColumnWidth(8)
-    @TableDataField("年级")
+    @TableDataField(name = "年级", width = 8, direction = StringAlignment.MIDDLE)
     private int grade;
 
-    @TableDataField("性别")
-    @TableColumnWidth(8)
+    @TableDataField(name = "性别", width = 6)
     private Gender gender; // 0 女  , 1 男
 
 

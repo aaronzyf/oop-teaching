@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
 
         List<Student> list = new ArrayList<>();
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 10; i++) {
             Student student;
             if (i % 2 == 0) {
                 student = new Student("吴琼" + i, Gender.WOMAN, i % 4 + 1);

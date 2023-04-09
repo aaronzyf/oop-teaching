@@ -1,6 +1,5 @@
 package com.cabbage03.studentManagement.tools;
 
-import com.cabbage03.studentManagement.annotations.TableColumnWidth;
 import com.cabbage03.studentManagement.annotations.TableDataField;
 
 import java.lang.reflect.Field;
@@ -34,7 +33,6 @@ public class CommandLineUtils {
         return deleteConfirm("确定要删除吗");
     }
 
-    private static final int DEFAULT_COLUMN_WIDTH = 10;
 
     /**
      * 只显示实体类中 , 被 TableDataField 装饰的类.
@@ -50,9 +48,8 @@ public class CommandLineUtils {
 
         for (Field field : fields) {
             TableDataField tableDataField = field.getAnnotation(TableDataField.class);
-            TableColumnWidth tableColumnWidth = field.getAnnotation(TableColumnWidth.class);
             if (tableDataField != null) {
-                System.out.print(StringUtils.padString(tableDataField.value(), tableColumnWidth == null ? DEFAULT_COLUMN_WIDTH : tableColumnWidth.value()) + "\t\t");
+                System.out.print(StringUtils.padString(tableDataField.name(), tableDataField.width()) + "\t");
                 fieldsShowInTable.add(field);
             }
         }
@@ -61,7 +58,7 @@ public class CommandLineUtils {
         System.out.println();
         if (list.isEmpty()) {
             System.out.println();
-            System.out.println("\t\t\tno data");
+            System.out.println("\tno data");
         }
 
         AtomicInteger index = new AtomicInteger();
@@ -70,14 +67,14 @@ public class CommandLineUtils {
             fieldsShowInTable.forEach((Field field) -> {
                 //判断该属性有没有get方法 , 如果有 则invoke 对应的get方法
                 try {
-                    TableColumnWidth tableColumnWidth = field.getAnnotation(TableColumnWidth.class);
+                    TableDataField tableDataField = field.getAnnotation(TableDataField.class);
                     System.out.printf(
                             StringUtils.padString(
                                     cls.getMethod("get" + StringUtils.capitalize(field.getName())).invoke(obj).toString(),
-                                    tableColumnWidth == null ? DEFAULT_COLUMN_WIDTH : tableColumnWidth.value())
-                                    + "\t\t");
+                                    tableDataField.width(), tableDataField.direction())
+                                    + "\t");
                 } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
-                    System.out.print("no data" + "\t\t");
+                    System.out.print("no data" + "\t");
                 }
             });
             System.out.println();
