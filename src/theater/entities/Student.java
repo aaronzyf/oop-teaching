@@ -1,9 +1,9 @@
-package com.cabbage03.studentManagement.entities;
+package theater.entities;
 
 
-import com.cabbage03.studentManagement.annotations.TableDataField;
-import com.cabbage03.studentManagement.enums.Gender;
-import com.cabbage03.studentManagement.enums.StringAlignment;
+import theater.annotations.TableDataField;
+import theater.enums.Gender;
+import theater.enums.StringAlignment;
 
 public class Student {
 

@@ -1,4 +1,4 @@
-package com.cabbage03.studentManagement.enums;
+package theater.enums;
 
 public enum StringAlignment {
     LEFT,

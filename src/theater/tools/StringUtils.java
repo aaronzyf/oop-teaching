@@ -1,6 +1,6 @@
-package com.cabbage03.studentManagement.tools;
+package theater.tools;
 
-import com.cabbage03.studentManagement.enums.StringAlignment;
+import theater.enums.StringAlignment;
 
 import java.text.BreakIterator;
 

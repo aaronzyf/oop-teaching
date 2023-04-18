@@ -1,6 +1,6 @@
-package com.cabbage03.studentManagement.annotations;
+package theater.annotations;
 
-import com.cabbage03.studentManagement.enums.StringAlignment;
+import theater.enums.StringAlignment;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

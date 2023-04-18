@@ -1,4 +1,4 @@
-package com.cabbage03.studentManagement.annotations;
+package theater.annotations;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
